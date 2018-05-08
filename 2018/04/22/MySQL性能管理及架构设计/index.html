@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MySQL性能管理及架构设计 | LinQS&#39;s BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="并发量:同一时间处理的请求的数量 QPS:每秒钟处理的查询量 TPS: 影响数据库性能的因素  sql查询速度 服务器硬件 网卡流量 磁盘io   高TPS、QPS 大量的并发和超高的CPU使用率 大表（千万行或10G）-&amp;gt;慢查询    DDL影响 -&amp;gt;索引时间长、主从延迟。修改表结构长时间">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL性能管理及架构设计">
+<meta property="og:url" content="http://yoursite.com/2018/04/22/MySQL性能管理及架构设计/index.html">
+<meta property="og:site_name" content="LinQS&#39;s BLOG">
+<meta property="og:description" content="并发量:同一时间处理的请求的数量 QPS:每秒钟处理的查询量 TPS: 影响数据库性能的因素  sql查询速度 服务器硬件 网卡流量 磁盘io   高TPS、QPS 大量的并发和超高的CPU使用率 大表（千万行或10G）-&amp;gt;慢查询    DDL影响 -&amp;gt;索引时间长、主从延迟。修改表结构长时间延迟 大事务">
+<meta property="og:updated_time" content="2018-04-22T15:57:26.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL性能管理及架构设计">
+<meta name="twitter:description" content="并发量:同一时间处理的请求的数量 QPS:每秒钟处理的查询量 TPS: 影响数据库性能的因素  sql查询速度 服务器硬件 网卡流量 磁盘io   高TPS、QPS 大量的并发和超高的CPU使用率 大表（千万行或10G）-&amp;gt;慢查询    DDL影响 -&amp;gt;索引时间长、主从延迟。修改表结构长时间延迟 大事务">
+  
+    <link rel="alternate" href="/atom.xml" title="LinQS&#39;s BLOG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LinQS&#39;s BLOG</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MySQL性能管理及架构设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/22/MySQL性能管理及架构设计/" class="article-date">
+  <time datetime="2018-04-22T14:46:55.000Z" itemprop="datePublished">2018-04-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL性能管理及架构设计
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>并发量</code>:同一时间处理的请求的数量</p>
+<p><code>QPS</code>:每秒钟处理的查询量</p>
+<p><code>TPS</code>:</p>
+<p><strong>影响数据库性能的因素</strong></p>
+<ul>
+<li>sql查询速度</li>
+<li>服务器硬件</li>
+<li>网卡流量</li>
+<li>磁盘io</li>
+</ul>
+<ol>
+<li>高TPS、QPS</li>
+<li>大量的并发和超高的CPU使用率</li>
+<li>大表（千万行或10G）-&gt;慢查询    DDL影响 -&gt;索引时间长、主从延迟。修改表结构长时间延迟</li>
+<li>大事务</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/22/MySQL性能管理及架构设计/" data-id="cjgwzy7wz000gmoutnq0kymwz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/22/CentOS7搭建RedisCluster集群/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CentOS7搭建RedisCluster集群
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/20/ELK实践/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ELK实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS7/">CentOS7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS7-Prometheus/">CentOS7,Prometheus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/CentOS7/" style="font-size: 20px;">CentOS7</a> <a href="/tags/CentOS7-Prometheus/" style="font-size: 10px;">CentOS7,Prometheus</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/python/" style="font-size: 15px;">python</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/07/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/07/Windows下使用git推送本地文件夹到github/">Windows下使用git推送本地文件夹到github</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/04/docker笔记/">docker笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/04/vagrant和docker区别/">vagrant和docker区别</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/02/linux/">linux</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

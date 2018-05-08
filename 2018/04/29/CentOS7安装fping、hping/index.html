@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CentOS7安装fping、hping | LinQS&#39;s BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装fping123456wget https://fping.org/dist/fping-4.0.tar.gztar -zxvf fping-*cd fping-*./configure --prefix=/usr/local/fpingmake &amp;amp;&amp;amp; make install/us">
+<meta name="keywords" content="CentOS7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7安装fping、hping">
+<meta property="og:url" content="http://yoursite.com/2018/04/29/CentOS7安装fping、hping/index.html">
+<meta property="og:site_name" content="LinQS&#39;s BLOG">
+<meta property="og:description" content="安装fping123456wget https://fping.org/dist/fping-4.0.tar.gztar -zxvf fping-*cd fping-*./configure --prefix=/usr/local/fpingmake &amp;amp;&amp;amp; make install/usr/local/fping/sbin/fping -v   安装完成 配置一下环境变量1234">
+<meta property="og:updated_time" content="2018-05-04T00:57:58.516Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS7安装fping、hping">
+<meta name="twitter:description" content="安装fping123456wget https://fping.org/dist/fping-4.0.tar.gztar -zxvf fping-*cd fping-*./configure --prefix=/usr/local/fpingmake &amp;amp;&amp;amp; make install/usr/local/fping/sbin/fping -v   安装完成 配置一下环境变量1234">
+  
+    <link rel="alternate" href="/atom.xml" title="LinQS&#39;s BLOG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">LinQS&#39;s BLOG</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CentOS7安装fping、hping" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/29/CentOS7安装fping、hping/" class="article-date">
+  <time datetime="2018-04-29T03:11:52.000Z" itemprop="datePublished">2018-04-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CentOS7安装fping、hping
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>安装fping<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://fping.org/dist/fping-4.0.tar.gz</span><br><span class="line">tar -zxvf fping-*</span><br><span class="line">cd fping-*</span><br><span class="line">./configure --prefix=/usr/local/fping</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">/usr/local/fping/sbin/fping -v</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>安装完成</strong></p>
+<p>配置一下环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line">#在最后面添加</span><br><span class="line">export PATH=$PATH:/usr/local/fping/sbin</span><br><span class="line">source /etc/profile</span><br><span class="line">fping -v</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>安装hping</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">wget http://fping.org/dist/fping-3.15.tar.gz</span><br><span class="line">#解压</span><br><span class="line">unzip master.zip</span><br><span class="line">#安装依赖</span><br><span class="line">yum install -y libcap-devel </span><br><span class="line">yum install -y tcl tcl-devel</span><br><span class="line">cd hping-master/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">ln -sf /usr/include/pcap-bpf.h /usr/include/net/bpf.h</span><br><span class="line">make strip</span><br><span class="line">make install</span><br><span class="line">hping -v</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">**安装完成**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##Linux网络诊断工具：MTR</span><br></pre></td></tr></table></figure>
+<p>yum install mtr<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用法：mtr www.baidu.com</span><br><span class="line">![mtr](CentOS7安装fping、hping\mtr.png)</span><br></pre></td></tr></table></figure></p>
+<p>第一列：显示的是IP地址和本机域名；按n键可以切换IP和域名</p>
+<p>第二列 Loss%：是显示的每个对应IP的丢包率；</p>
+<p>第三列 snt：snt等于1，设置每秒发送数据包的数量，默认值是10 可以通过参数 -c来指定。</p>
+<p>第四列 Last：显示的最近一次的返回时延。</p>
+<p>第五列 Avg：平均值，这个应该是发送ping包的平均时延。</p>
+<p>第六列 Best：最好或者说时延最短的时间。</p>
+<p>第七列 Wrst：最坏或者说时延最长的时间。</p>
+<p>第八列 StDev：标准偏差。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>mtr -h 提供帮助命令</p>
+<p>mtr -v 显示mtr的版本信息</p>
+<p>mtr -r 已报告模式显示</p>
+<p>mtr -c 设置每秒发送数据包的数量</p>
+<p>mtr -s 用来指定ping数据包的大小</p>
+<p>mtr -n no-dns不对IP地址做域名解析</p>
+<p>mtr -a 来设置发送数据包的IP地址 这个对一个主机由多个IP地址是有用的</p>
+<p>mtr -i 使用这个参数来设置ICMP返回之间的要求默认是1秒</p>
+<p>mtr -4 IPv4</p>
+<p>mtr -6 IPv6<br>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/29/CentOS7安装fping、hping/" data-id="cjgwzy7x6000kmoutnqqwqetf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS7/">CentOS7</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/02/监控软件学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          监控软件学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/28/CentOS7安装Prometheus、Grafana/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CentOS7安装Prometheus、Grafana</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS7/">CentOS7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS7-Prometheus/">CentOS7,Prometheus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/CentOS7/" style="font-size: 20px;">CentOS7</a> <a href="/tags/CentOS7-Prometheus/" style="font-size: 10px;">CentOS7,Prometheus</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 20px;">MySQL</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/python/" style="font-size: 15px;">python</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/05/07/git笔记/">git笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/07/Windows下使用git推送本地文件夹到github/">Windows下使用git推送本地文件夹到github</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/04/docker笔记/">docker笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/04/vagrant和docker区别/">vagrant和docker区别</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/02/linux/">linux</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Lin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
